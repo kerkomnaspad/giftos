@@ -464,17 +464,16 @@ app.get("/cart", async (req, res) => {
 });
 
 app.post("/updateStatus", async (req, res) => {
-  // Get user ID from query parameters
 
   if (!user_id) {
     return res.status(400).json({ error: "User ID is required." });
   }
 
   try {
-    // Update status for rows belonging to the specified user
+    // Update status for specified user
     await Carts.update(
-      { status: 1 }, // Update fields
-      { where: { userid: user_id } } // Condition
+      { status: 1 }, 
+      { where: { userid: user_id, status: 0 } } 
     );
     res.status(200).json({ message: "Status updated successfully." });
   } catch (err) {
@@ -486,16 +485,15 @@ app.post("/updateStatus", async (req, res) => {
 });
 
 app.post("/updateRowStatus", async (req, res) => {
-  // Get user ID and cart ID from request body
+
   const { cart_id, statusNew } = req.body;
 
-  // Check if user ID and cart ID are provided
   if (!cart_id) {
     return res.status(400).json({ error: "User ID and Cart ID are required." });
   }
 
   try {
-    // Update status for the specified cart belonging to the user
+
     const [updatedRowsCount] = await Carts.update(
       { status: statusNew }, // Update fields
       { where: { id: cart_id } } // Condition
@@ -532,15 +530,12 @@ app.post("/addData", async (req, res) => {
     const tableAttributes = Object.keys(req.body);
     console.log("Table Attributes:", tableAttributes);
 
-    // Assuming you have sequelize models defined for each table
     const model = sequelize.models[tableName];
 
-    // Check if the model exists
     if (!model) {
       return res.status(400).json({ error: "Invalid table name" });
     }
 
-    // Create a new record in the database
     const newData = await model.create(req.body, {
       fields: tableAttributes,
     });
@@ -652,7 +647,7 @@ app.post("/update", async (req, res) => {
 
   let model;
 
-  // Choose the appropriate model based on the query
+  // Choose model based on the query
   switch (query) {
     case "user":
       model = Users;
@@ -677,9 +672,8 @@ app.post("/update", async (req, res) => {
       where: { id: ids },
     });
 
-    // Handle the result of the update operation
     if (updatedRowsCount > 0) {
-      // Rows were updated successfully
+      // Rows updated successfully
       console.log(`Updated ${updatedRowsCount} rows for query "${query}"`);
       res.status(200).json({
         success: true,
@@ -687,7 +681,7 @@ app.post("/update", async (req, res) => {
         updatedRows: updatedRows,
       });
     } else {
-      // No rows were updated
+      // No rows updated
       console.log(`No rows were updated for query "${payloads}"`);
       res.status(404).json({
         success: false,
@@ -731,20 +725,20 @@ app.get("/showColumn", async (req, res) => {
     const tableName = req.query.query.toLowerCase();
     console.log("Db table:" + tableName);
 
-    // Check if the model for the specified table exists
+    // Check table exists
     if (!sequelize.models[tableName]) {
       throw new Error("Table not found");
     }
 
-    // Use Sequelize to fetch column names
+    //fetch column names
     const tableAttributes = await sequelize.models[tableName].describe();
 
-    // Extract column names from the table attributes
+
     const excludedColumns = ["id", "createdAt", "updatedAt"];
     const columns = Object.keys(tableAttributes).filter(
       (column) => !excludedColumns.includes(column)
     );
-    // Send the column names back to the client
+
     res.json({ columns });
   } catch (error) {
     console.error("Error:", error);
@@ -785,14 +779,13 @@ app.get("/item/:id", async (req, res) => {
 
 app.get("/getUserData", async (req, res) => {
   try {
-    const userId = req.query.id; // Assume you pass the user ID as a query parameter
+    const userId = req.query.id;
     const user = await Users.findByPk(userId);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" + userId });
     }
 
-    // Send back the user data (excluding the password for security reasons)
     res.json({
       name: user.name,
       email: user.email,
@@ -810,10 +803,10 @@ app.get("/searchByDescription", async (req, res) => {
     const items = await Items.findAll({
       where: {
         description: {
-          [Op.like]: `%${searchQuery}%`, // Case-sensitive search using LIKE
+          [Op.like]: `%${searchQuery}%`, 
         },
       },
-      // Set collation for the entire query to make it case-insensitive
+
       collate: "utf8mb4_general_ci",
     });
     res.json(items);
