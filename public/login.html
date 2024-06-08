@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <title>
+    Giftos
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<style>
+  #abstract {
+    max-width: 100%;
+    /* Limit the width to 80% of the viewport */
+    /* max-height: 105%; Limit the height to 80% of the viewport */
+    /* width: auto; */
+    height: 100%;
+    object-fit: fill;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: add a subtle shadow for better visual appeal */
+  }
+
+  #rememberMe {
+    transform: scale(0.5);
+    /* Adjust the scale factor as needed */
+    margin-right: 5px;
+    /* Adjust the spacing between the checkbox and the label */
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    vertical-align: middle;
+    width: 50%;
+    /* Align the checkbox and label vertically */
+  }
+
+  /* Optionally, add margin between checkbox and label */
+  .checkbox-wrapper input[type="checkbox"] {
+    margin-right: 5px;
+  }
+</style>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="index.html">
+          <span>
+            Giftos
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""></span>
+        </button>
+
+        <div class="collapse navbar-collapse innerpage_navbar" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item ">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="shop.html">
+                Shop
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="why.html">
+                Why Us
+              </a>
+            </li> -->
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="testimonial.html">
+                Testimonial
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">Register</a>
+            </li>
+            <li class="nav-item" id="cartNavItem">
+              <a class="nav-link" href="cart.html">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="user_option" id="loginNavItem">
+            <a href="login.html">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span>
+                Login
+              </span>
+            </a>
+          </div>
+          <form class="d-flex" role="search" id="searchForm">
+            <input class="form-control me-2" placeholder="Search" aria-label="Search" id="searchInput">
+            <button class="btn btn-outline-success" id="search-btn">Search</button>
+          </form>
+        </div>
+  </div>
+  </nav>
+  </header>
+  <!-- end header section -->
+
+  </div>
+  <!-- end hero area -->
+
+  <!-- contact section -->
+
+  <section class="contact_section layout_padding">
+    <div class="container px-0">
+      <div class="heading_container ">
+        <h2 class="">
+          Login form
+        </h2>
+      </div>
+    </div>
+    <div class="container container-bg">
+      <div class="row">
+        <div class="col-lg-7 col-md-6 px-0">
+          <div class="map_container">
+            <div class="map-responsive">
+              <img
+                src="https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjEwMTYtYy0wOF8xLWtzaDZtemEzLmpwZw.jpg"
+                alt="Descriptive alt text" id="abstract">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-5 px-0">
+          <form id="loginForm">
+            <div>
+              <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div>
+              <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="rememberMe">
+              <label for="rememberMe">Remember Me</label>
+            </div>
+            <div>
+              <label id="formError" style="display: none; color: red;"></label>
+            </div>
+            <div>
+              <button type="submit" id="loginButton">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end contact section -->
+
+  <!-- info section -->
+
+  <section class="info_section  layout_padding2-top">
+    <div class="social_container">
+      <div class="social_box">
+        <a href="">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div class="info_container ">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              ABOUT US
+            </h6>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed doLorem ipsum dolor sit amet,
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_form ">
+              <h5>
+                Newsletter
+              </h5>
+              <form action="#">
+                <input type="email" placeholder="Enter your email">
+                <button>
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              NEED HELP
+            </h6>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed doLorem ipsum dolor sit amet,
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              CONTACT US
+            </h6>
+            <div class="info_link-box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span> Gb road 123 london Uk </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>+01 12345678901</span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span> demo@gmail.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer section -->
+    <footer class=" footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a href="https://html.design/">Free Html Templates</a>
+        </p>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+  </section>
+
+  <!-- end info section -->
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <script src="js/custom.js"></script>
+  <script>
+
+
+    var uid;
+
+    // Function to handle form submission
+
+    $(document).ready(function () {
+
+      $('#loginButton').on('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        login(); // Call your login function here
+      });
+
+      $('#loginForm').on('keypress', function (event) {
+        if (event.which === 13) { // Check if the key pressed is Enter (key code 13)
+          event.preventDefault(); // Prevent the default form submission behavior
+          login(); // Call your login function here
+        }
+      });
+
+      function checkLoginStatus() {
+        getCookie('userId', function (userId) {
+          console.log("Cookie: " + userId);
+          if (userId && userId !== 'undefined') {
+            // User is logged in, hide Register and Login, show Logout
+
+            // $('#registerNavItem').hide();
+            // $('#loginNavItem').hide();
+            // $('#cartNavItem').show();
+            // $('#logoutNavItem').show();
+
+            window.location.href = "index.html"
+          } else {
+            // User is not logged in, show Register and Login, hide Logout
+            $('#registerNavItem').show();
+            $('#loginNavItem').show();
+            $('#cartNavItem').hide();
+            $('#logoutNavItem').hide();
+            $('#profileNavItem').hide();
+
+          }
+          // Call the callback function if provided
+          if (callback) {
+            callback(userId);
+          }
+        });
+        checkSession();
+      }
+
+      function checkSession() {
+        console.log('chk')
+        $.ajax({
+          type: 'GET',
+          url: '/checkSession',
+          success: function (response) {
+            if (response > 0) {
+              // User is logged in, hide Register and Login, show Logout
+              // console.log('in')
+              uid = response;
+              window.location.href = "index.html"
+              // $('#registerNavItem').hide();
+              // $('#loginNavItem').hide();
+              // $('#cartNavItem').show();
+              // $('#logoutNavItem').show();
+            } else {
+              // console.log(response)
+              // User is not logged in, show Register and Login, hide Logout
+              $('#registerNavItem').show();
+              $('#loginNavItem').show();
+              $('#cartNavItem').hide();
+              $('#logoutNavItem').hide();
+              $('#profileNavItem').hide();
+            }
+          }
+        });
+      }
+
+
+      $('#searchForm').on('submit', function (event) {
+        event.preventDefault();
+
+
+        var query = $('#searchInput').val();
+
+        searchAndLoad(query);
+      });
+
+
+
+
+      function searchAndLoad(query) {
+
+        if (query.startsWith('daftar_')) {
+          if (uid != 1) {
+            return;
+          }
+          window.location.href = 'daftar.html';
+        }
+        else {
+          window.location.href = 'shop.html?search=' + encodeURIComponent(query);
+        }
+      }
+
+      // Event handler for search button click
+      $("#search-btn").click(function () {
+        var query = $("#searchInput").val();
+        if (query.trim() !== "") {
+          searchAndLoad(query);
+        }
+      });
+
+      // Event handler for pressing Enter in the search input
+      $("#searchInput").keypress(function (event) {
+        if (event.which === 13) { // Enter key pressed
+          var query = $("#searchInput").val();
+          if (query.trim() !== "") {
+            searchAndLoad(query);
+          }
+        }
+      });
+    });
+
+    function login() {
+      const email = $('#email').val();
+      const password = $('#password').val();
+      const rememberMe = $("#rememberMe").is(":checked");
+
+      if (!email || !password) {
+        $('#formError').text('All fields are required').show();
+        return;
+      }
+
+      $.ajax({
+        url: '/login',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ email: email, password: password, rememberMe: rememberMe }),
+        success: function (response) {
+          if (response.success) {
+
+            if (rememberMe) {
+              const expirationDate = new Date();
+              expirationDate.setTime(expirationDate.getTime() + (1 * 60 * 60 * 1000)); // Add 7 days in milliseconds
+              document.cookie = `userId=${encodeURIComponent(response.userId)}; expires=${expirationDate.toUTCString()}; path=/`;
+            }
+
+            // $('#formError').text('Login successful! Redirecting...').show();
+            // setTimeout(function () {
+            window.location.href = 'index.html';
+            // }, 1000);
+          } else {
+            $('#formError').text(response.message).show();
+          }
+        },
+        error: function () {
+          $('#loginAlert').removeClass('alert-success').addClass('alert-danger').text('An error occurred. Please try again.').show();
+        }
+      });
+    }
+
+
+
+  </script>
+</body>
+
+</html>

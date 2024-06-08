@@ -1,0 +1,6 @@
+19-5-2024: create project, database, homepage, register
+20-5-2024: create table, add data to database w/ frontend
+23-5-2024: delete row table, get data untuk edit
+24-5-2024: uda bisa update data
+25-5-2024: integrasi ke template
+26-5-2024: session & cookie, logout

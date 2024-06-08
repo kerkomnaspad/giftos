@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+    <title>
+        Giftos
+    </title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+<link href="css/responsive.css" rel="stylesheet" />
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+<!-- Custom styles for this template -->
+<link href="css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="css/responsive.css" rel="stylesheet" />
+
+<style>
+    /* Ensure the header has a lower z-index than the modal */
+    .hero_area {
+        z-index: 1000;
+        /* Example z-index for header */
+        position: relative;
+        /* Ensure the header is positioned */
+    }
+
+    .modal {
+        z-index: 1050;
+        /* Bootstrap default for modals */
+    }
+
+    .pending-text {
+        color: orange;
+        /* Or any other orangish color */
+    }
+
+    .processed-text {
+        color: green;
+        /* Or any other green color */
+    }
+
+    .rejected-text {
+        color: red;
+        /* Or any other green color */
+    }
+</style>
+
+<body>
+
+    <div class="hero_area">
+        <!-- header section strats -->
+        <header class="header_section">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                    <span>
+                        Giftos
+                    </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class=""></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shop.html">
+                                Shop
+                            </a>
+                        </li>
+                        <li class="nav-item" id="profileNavItem">
+                            <a class="nav-link" href="profile.html">
+                                Profile
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="testimonial.html">
+                                Testimonial
+                            </a>
+                        </li> -->
+                        <li class="nav-item" id="registerNavItem">
+                            <a class="nav-link" href="register.html">Register</a>
+                        </li>
+                        <li id="logoutNavItem" class="nav-item" style="display:none;">
+                            <a class="nav-link" href="#" id="logoutButton">Logout</a>
+                        </li>
+                        <li class="nav-item active" id="cartNavItem">
+                            <a class="nav-link" href="cart.html">
+                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="user_option" id="loginNavItem">
+                        <a href="login.html">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>
+                                Login
+                            </span>
+                        </a>
+                    </div>
+                    <form class="d-flex" role="search" id="searchForm">
+                        <input class="form-control me-2" placeholder="Search" aria-label="Search" id="searchInput">
+                        <button class="btn btn-outline-success" id="search-btn">Search</button>
+                    </form>
+                </div>
+    </div>
+    </nav>
+    </header>
+    <!-- end header section -->
+
+    </div>
+    <!-- end hero area -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Form Add ???</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="formFields">
+                    <!-- dynamic table -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick=addData() data-bs-dismiss="modal"
+                        id="addUserBtn">Add</button>
+                    <button type="button" class="btn btn-primary" onclick=updateData() data-bs-dismiss="modal"
+                        id="updateBtn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+
+        <tfoot></tfoot>
+
+
+    </table>
+
+
+    <!-- &emsp;&emsp;
+    <button type="button" class="btn btn-outline-primary" id="btn-Add" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Add</button> -->
+
+
+</body>
+
+<script>
+
+
+    var uid = 0;
+
+    function getQueryParams() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return Object.fromEntries(urlParams.entries());
+    }
+
+    // Get query parameters
+    const qus = getQueryParams();
+
+
+    console.log("qus" + qus);
+
+
+    $(document).ready(function () {
+
+        function checkLoginStatus() {
+            getCookie('userId', function (userId) {
+                console.log("Cookie: " + userId);
+                if (userId) {
+                    // User is logged in, hide Register and Login, show Logout
+                    $('#registerNavItem').hide();
+                    $('#loginNavItem').hide();
+                    $('#cartNavItem').show();
+                    $('#logoutNavItem').show();
+                    $('#profileNavItem').show();
+                    uid = userId;
+                } else {
+                    $('#profileNavItem').hide();
+                    $('#registerNavItem').show();
+                    $('#loginNavItem').show();
+                    $('#cartNavItem').hide();
+                    $('#logoutNavItem').hide();
+
+                }
+                // Call the callback function if provided
+                if (callback) {
+                    callback(userId);
+                }
+
+
+            });
+            checkSession();
+        }
+
+        // Function to get cookie by name
+        function getCookie(name, callback) {
+            $.ajax({
+                url: '/get-cookie',
+                method: 'GET',
+                success: function (response) {
+                    console.log(`Cookie ${name} found:`, response); // Debugging log
+                    // Use the response (cookie value) as needed
+                    callback(response); // Call the callback function with the cookie value
+                },
+                error: function (xhr, status, error) {
+                    console.error(`Error retrieving cookie ${name}:`, error); // Debugging log
+                    callback(null); // Call the callback function with null in case of error
+                }
+            });
+        }
+
+        function checkSession() {
+            console.log('chk')
+            $.ajax({
+                type: 'GET',
+                url: '/checkSession',
+                success: function (response) {
+                    if (response > 0) {
+                        // User is logged in, hide Register and Login, show Logout
+
+                        $('#registerNavItem').hide();
+                        $('#loginNavItem').hide();
+                        $('#cartNavItem').show();
+                        $('#logoutNavItem').show();
+                        $('#profileNavItem').show();
+                        uid = response;
+                    } else {
+
+                        // User is not logged in, show Register and Login, hide Logout
+                        $('#registerNavItem').show();
+                        $('#loginNavItem').show();
+                        $('#cartNavItem').hide();
+                        $('#logoutNavItem').hide();
+                        $('#profileNavItem').hide();
+                    }
+                }
+            });
+
+        }
+
+
+
+        // Logout function
+        function logout() {
+        $.ajax({
+          url: '/logout',
+          method: 'GET',
+          success: function (response) {
+            // Reload the page after successful logout
+            location.reload();
+          },
+          error: function () {
+            console.error('An error occurred during logout.');
+            // Optionally handle errors here
+          }
+        });
+      }
+
+        // Bind logout function to logout button
+        $('#logoutButton').on('click', function (e) {
+            e.preventDefault();
+            logout();
+        });
+
+        // Check login status on page load
+        checkLoginStatus();
+        var tableName;
+
+
+
+
+        $('#btn-Add').click(function () {
+            $('#exampleModalLabel').text('Form add ' + tableName);
+            $('#dropdown-menu').toggle();
+            $('#updateBtn').hide();
+            $('#addUserBtn').show();
+            // console.log("YES")
+
+        });
+
+
+
+
+        // Call the function to load data into the table
+        loadDataIntoTable("cart");
+        getColumns("cart");
+
+
+
+
+
+        function getColumns(tb) {
+            $.ajax({
+                url: '/showColumn',
+                type: 'GET',
+                data: { query: tb },
+                success: function (data) {
+                    // Call the function to populate form fields with the received data
+                    console.log("Table:" + tb)
+                    populateFormFields(data.columns);
+
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        function populateFormFields(columns) {
+            var formFieldsHtml = '';
+            // Loop through the columns array
+            columns.forEach(column => {
+                // Check if the column is not equal to 'typeid'
+                if (column !== 'typeid') {
+                    formFieldsHtml += `
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">${column.charAt(0).toUpperCase() + column.slice(1)}</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="${column}" value="">
+        </div>
+      </div>
+    `;
+                }
+            });
+            // Set the HTML content of the formFields element to the generated HTML
+            $('#formFields').html(formFieldsHtml);
+        }
+
+
+    });
+
+    function loadDataIntoTable(qus) {
+
+        console.log("Search:" + qus);
+
+        $.ajax({
+            url: '/cart',
+            type: 'GET',
+            data: { query: qus }, // Set the query parameter
+            success: function (data) {
+
+                $('table thead').empty();
+                $('table tbody').empty();
+                $('table tfoot').empty();
+
+                // Check if data is not empty
+                if (data.length > 0) {
+
+                    var headers = Object.keys(data[0]).filter(header => !(header === 'id' || header === 'updatedAt' || header == 'createdAt'));
+                    headers.push('Actions');
+
+                    // Populate column headers
+                    var headerRow = $('<tr>');
+                    headers.forEach(function (header) {
+                        var capitalizedHeader = header.charAt(0).toUpperCase() + header.slice(1);
+                        headerRow.append($('<th>').text(capitalizedHeader));
+                    });
+                    $('table thead').append(headerRow).addClass('text-center');
+
+
+                    data.forEach(function (rowData) {
+                        var row = $('<tr>');
+
+                        // Populate cells with data
+                        headers.forEach(function (header) {
+                            var cell = $('<td>').text(rowData[header]);
+                            if (header === 'image') {
+                                // If the column is 'image', create an img element
+                                cell = $('<td>').append($('<img>').attr('src', rowData[header]).attr('alt', 'Image').css({ 'max-width': '100px', 'max-height': '100px' })).addClass('text-center');
+
+                            }
+                            else if (header === 'Actions') {
+
+                                // var editButton = $('<button>').text('Edit').addClass('btn btn-primary btn-sm mr-1').attr('data-bs-toggle', 'modal').attr('data-bs-target', '#exampleModal');;
+                                var deleteButton = $('<button>').text('Delete').addClass('btn btn-danger btn-sm');
+
+                                deleteButton.on('click', function () {
+                                    deleteRow(row, rowData.id, qus); // Call deleteRow function
+                                });
+
+                                var statusValue = rowData['status']; // Assuming 'status' is the header name for status column
+                                if (statusValue >= 1) {
+                                    deleteButton.hide(); // Hide the delete button if status is 'PROCESSED'
+                                }
+                                // editButton.on('click', function () {
+                                //     // Call editRow function
+
+                                //     // Show the modal for editing
+                                //     $('#exampleModalLabel').text('Form edit ' + tableName);
+                                //     $('#dropdown-menu').toggle();
+                                //     $('#addUserBtn').hide();
+                                //     $('#updateBtn').show();
+
+                                //     editRow(rowData.id, qus);
+                                // });
+
+                                cell = $('<td>').append(deleteButton).addClass('text-center');
+                            }
+                            else if (header === 'createdAt' || header === 'updatedAt') {
+
+                                var formattedDate = moment(rowData[header]).format('DD MMMM YYYY HH:mm:ss');
+                                cell = $('<td>').text(formattedDate).addClass('text-center')
+                            }
+                            else if (header === 'quantity') {
+                                // If the column is 'quantity', create - and + buttons
+                                var quantityWrapper = $('<div>').addClass('quantity-wrapper text-center');
+                                var minusButton = $('<button>').text('-').addClass('btn btn-secondary btn-sm');
+                                var quantityText = $('<span>').text(rowData[header]).addClass('quantity-text mx-2');
+                                var plusButton = $('<button>').text('+').addClass('btn btn-secondary btn-sm');
+
+                                minusButton.on('click', function () {
+                                    if (rowData[header] == 1) {
+                                        return;
+                                    }
+                                    updateQuantity(rowData.id, rowData[header] - 1, qus, quantityText);
+
+                                    quantityText.text = rowData[header] - 1;
+                                });
+
+                                plusButton.on('click', function () {
+                                    updateQuantity(rowData.id, rowData[header] + 1, qus, quantityText);
+                                    quantityText.text = rowData[header] + 1;
+                                });
+
+                                quantityWrapper.append(minusButton, quantityText, plusButton);
+                                cell = $('<td>').append(quantityWrapper);
+                            }
+                            else if (header === 'price') {
+                                var price = rowData[header];
+                                var quantity = rowData['quantity']; // Assuming the header for quantity is 'quantity'
+                                var total = price * quantity;
+                                var formattedTotal = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(total);
+                                cell = $('<td>').text(formattedTotal).addClass('text-center');
+                            }
+                            else if (header === 'status') {
+                                var statusValue = rowData[header];
+                                var statusText = '';
+                                var statusClass = ''; // Variable to hold the CSS class for styling the status text
+
+                                if (statusValue === 0) {
+                                    statusText = '-';
+                                } else if (statusValue === 1) {
+                                    statusText = 'PENDING';
+                                    statusClass = 'pending-text'; // Add class for pending status
+                                } else if (statusValue === 2) {
+                                    statusText = 'PROCESSED';
+                                    statusClass = 'processed-text'; // Add class for processed status
+                                } else if (statusValue === 3) {
+                                    statusText = 'REJECTED';
+                                    statusClass = 'rejected-text'; // Add class for processed status
+                                }
+
+
+                                // Create a <span> element to hold the status text and apply the appropriate CSS class
+                                var statusSpan = $('<span>').text(statusText).addClass('status-text').addClass(statusClass);
+
+                                // Create the table cell and append the statusSpan to it
+                                cell = $('<td>').addClass('text-center').append(statusSpan);
+                            }
+                            else {
+
+                                cell = $('<td>').text(rowData[header]).addClass('text-center');
+                            }
+                            row.append(cell);
+                        });
+
+
+                        $('table tbody').append(row);
+                    });
+
+
+                }
+
+                else {
+
+                    $('table tbody').append($('<tr>').append($('<td>').text('No data available')));
+
+                }
+
+                // var totalPrice = data.reduce((sum, rowData) => sum + (rowData['price'] * rowData['quantity']), 0);
+                var totalPrice = data.filter(rowData => rowData['status'] === 0)
+                    .reduce((sum, rowData) => sum + (rowData['price'] * rowData['quantity']), 0);
+                var formattedTotalPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalPrice);
+
+                // Create footer row
+                var footerRow = $('<tr>').append(
+                    $('<td>').attr('colspan', headers.length - 1).text('Total Price').addClass('text-right'),
+                    $('<td>').text(formattedTotalPrice).addClass('text-center')
+                );
+
+                // Append order button
+                var orderButtonRow = $('<tr>').append(
+                    $('<td>').attr('colspan', headers.length).append(
+                        $('<button>').text('Order').addClass('btn btn-success btn-block').on('click', function () {
+                            var confirmOrder = confirm('Are you sure you want to place this order?');
+                            if (confirmOrder) {
+                                console.log("confirmed");
+                                $.ajax({
+                                    url: "/updateStatus",
+                                    type: 'POST',
+                                    contentType: 'application/json',
+                                    success: function (response) {
+                                        // Request was successful
+                                        alert('Order placed successfully!');
+                                        location.reload();
+                                    },
+                                    error: function (xhr, status, error) {
+                                        // Error occurred while making the request
+                                        console.error(error);
+                                        alert('An error occurred while updating status.');
+                                    }
+                                });
+                            } else {
+                                // The user clicked cancel, do nothing
+                            }
+                        })
+                    )
+                );
+
+                // Append footer row and order button row to the table
+                $('table tfoot').append(footerRow, orderButtonRow);
+
+            },
+            error: function (xhr, status, error) {
+                console.error('Error loading data:', error);
+            }
+        });
+        tableName = qus;
+
+
+    }
+
+    function deleteRow(row, rowDataId, qus) {
+
+        const confirmed = confirm('Are you sure you want to delete this row?');
+
+        if (!confirmed) {
+            // If user cancels the deletion, return without doing anything
+            return;
+        }
+
+        // Send AJAX request to delete the row from the database
+        $.ajax({
+            url: '/delete', // Replace with your API endpoint
+            type: 'POST', // or 'DELETE' depending on your API
+            data: { id: rowDataId, query: qus }, // Assuming 'id' is a unique identifier for the row
+            success: function (response) {
+                if (response.success) {
+                    // Remove the row from the table
+                    row.remove();
+                    // Display success message after removing the row
+                    alert('Row deleted successfully.');
+                    reloadDaftarContent(qus);
+                } else {
+                    alert('Failed to delete the row.');
+                }
+            },
+            error: function () {
+                alert('Error occurred while trying to delete the row.');
+            }
+        });
+    }
+    function addData() {
+
+        // Ambil value dari title form
+        const modalTitleElement = document.getElementById('exampleModalLabel');
+        const modalTitleText = modalTitleElement.textContent.trim();
+        const words = modalTitleText.split(' ');
+        const tbName = words[words.length - 1].toLowerCase();
+
+        console.log("TBNAME:" + tbName);
+
+
+        const formData = {};
+        const formElements = document.querySelectorAll('.form-control');
+        formElements.forEach(element => {
+            formData[element.id] = element.value;
+        });
+
+        $.ajax({
+            url: '/addData?query=' + tbName,
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                console.log('Data added successfully:', response);
+                reloadDaftarContent(tbName);
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('Error adding data:', error);
+            }
+        });
+    }
+
+
+    var currentEditedRow;
+
+    function editRow(rowDataId, qus) {
+        // Fetch existing data for editing
+        currentEditedRow = rowDataId;
+
+        $.ajax({
+            url: '/getData?id=' + rowDataId + '&query=' + qus,
+            type: 'GET',
+            success: function (response) {
+                if (response.success) {
+                    const rowData = response.data;
+
+                    const formElements = document.querySelectorAll('.form-control');
+                    formElements.forEach(element => {
+                        element.value = rowData[element.id] || '';
+                    });
+
+                } else {
+                    alert('Failed to fetch data.');
+                }
+            },
+            error: function () {
+                alert('Error occurred while trying to fetch data.');
+            }
+        });
+    }
+    //Untuk reload abis add/delete
+    function reloadDaftarContent(q) {
+        parent.postMessage({ reloadDaftarContent: q }, '*');
+    }
+
+    function updateData() {
+        // Get the row data ID and query from the update button's data attributes
+        const rowDataId = currentEditedRow;
+
+        const modalTitleElement = document.getElementById('exampleModalLabel');
+        const modalTitleText = modalTitleElement.textContent.trim();
+        const words = modalTitleText.split(' ');
+        const tbl = words[words.length - 1].toLowerCase();
+
+        // Collect the data from the modal fields
+        const updatedData = {};
+        const formElements = document.querySelectorAll('#formFields input');
+        formElements.forEach(element => {
+            updatedData[element.id] = element.value;
+        });
+
+
+
+        console.log("rowData:", rowDataId);
+        console.log("tbl:", tbl);
+        console.log("updatedData:", updatedData);
+
+
+
+
+        // Send AJAX request to update the data in the database
+        $.ajax({
+
+            url: '/update', // Replace with your API endpoint
+            type: 'POST', // or 'PUT' depending on your API
+            contentType: 'application/json',
+            data: JSON.stringify({
+                ids: rowDataId,
+                query: tbl,
+                payloads: updatedData
+            }),
+            success: function (response) {
+                if (response.success) {
+                    // Reload the table or update the specific row in the table
+
+                    alert('Data updated successfully.');
+                } else {
+                    alert('Failed to update data.');
+                }
+                location.reload();
+            },
+            error: function () {
+                alert('Error occurred while trying to update data.');
+            }
+        });
+    }
+
+    function updateQuantity(rowDataId, newQuantity, tbl, quantityText) {
+        $.ajax({
+
+            url: '/update', // Replace with your API endpoint
+            type: 'POST', // or 'PUT' depending on your API
+            contentType: 'application/json',
+            data: JSON.stringify({
+                ids: rowDataId,
+                query: tbl,
+                payloads: { quantity: newQuantity }
+            }),
+            success: function (response) {
+                if (response.success) {
+                    // Reload the table or update the specific row in the table
+                    // quantityText.text(newQuantity);
+                    // alert('Data updated successfully.');
+                    loadDataIntoTable("cart")
+                } else {
+                    alert('Failed to update data.');
+                }
+                // location.reload();
+            },
+            error: function () {
+                alert('Error occurred while trying to update data.');
+            }
+        });
+        $('#searchForm').on('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Get the value from the search input field
+            var query = $('#searchInput').val();
+
+            // Now you can handle the form submission logic
+            searchAndLoad(query);
+        });
+
+
+        function searchAndLoad(query) {
+
+            if (query.startsWith('daftar_')) {
+                console.log(query)
+                if (uid != 1) {
+                    return;
+                }
+                window.location.href = 'daftar.html'
+            }
+            else {
+                window.location.href = 'shop.html?search=' + encodeURIComponent(query);
+            }
+        }
+
+        // Event handler for search button click
+        $("#search-btn").click(function () {
+            var query = $("#searchInput").val();
+            if (query.trim() !== "") {
+                searchAndLoad(query);
+            }
+        });
+    }
+
+
+
+</script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+</script>
+<script src="js/custom.js"></script>
+
+</html>
