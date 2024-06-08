@@ -445,7 +445,7 @@
                                 var minusButton = $('<button>').text('-').addClass('btn btn-secondary btn-sm');
                                 var quantityText = $('<span>').text(rowData[header]).addClass('quantity-text mx-2');
                                 var plusButton = $('<button>').text('+').addClass('btn btn-secondary btn-sm');
-
+                                var statusValue = rowData['status'];
                                 if (statusValue >= 1) {
                                     minusButton.hide();
                                     plusButton.hide(); 
