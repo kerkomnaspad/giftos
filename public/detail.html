@@ -381,7 +381,7 @@
 
 
       $("#searchInput").keypress(function (event) {
-        event.preventDefault();
+        
         if (event.which === 13) {
           var query = $("#searchInput").val();
           if (query.trim() !== "") {
