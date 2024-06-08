@@ -827,11 +827,13 @@
             $('#loginNavItem').hide();
             $('#cartNavItem').show();
             $('#logoutNavItem').show();
+            $('#profileNavItem').show();
           } else {
             $('#registerNavItem').show();
             $('#loginNavItem').show();
             $('#cartNavItem').hide();
             $('#logoutNavItem').hide();
+            $('#profileNavItem').hide();
 
           }
           if (callback) {
@@ -841,6 +843,30 @@
         checkSession();
       }
 
+      function checkSession() {
+        console.log('chk')
+        $.ajax({
+          type: 'GET',
+          url: '/checkSession',
+          success: function (response) {
+            if (response > 0) {
+              $('#registerNavItem').hide();
+              $('#loginNavItem').hide();
+              $('#cartNavItem').show();
+              $('#logoutNavItem').show();
+              $('#profileNavItem').show();
+              uid = response;
+            }
+            else {
+              $('#registerNavItem').show();
+              $('#loginNavItem').show();
+              $('#cartNavItem').hide();
+              $('#logoutNavItem').hide();
+              $('#profileNavItem').hide();
+            }
+          }
+        });
+      }
 
       function getCookie(name, callback) {
         $.ajax({
