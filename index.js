@@ -36,8 +36,13 @@ const {
   Op,
 } = require("sequelize");
 
-const sequelize = new Sequelize("db_fin", "root", "12345", {
-  host: "localhost",
+// const sequelize = new Sequelize("db_fin", "root", "12345", {
+//   host: "localhost",
+
+//   dialect: "mysql",
+// });
+
+const sequelize = new Sequelize(process.env.JAWSDB_URL, {
 
   dialect: "mysql",
 });
