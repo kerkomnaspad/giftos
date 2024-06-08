@@ -163,7 +163,7 @@
         </h2>
       </div>
       <div class="row" id="productbox">
-        <div class="col-sm-6 col-md-4 col-lg-3">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
             <a href="">
               <div class="img-box">
@@ -263,7 +263,7 @@
               </div>
             </a>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="btn-box">
         <a href="shop.html">
@@ -295,16 +295,13 @@
                 </h2>
               </div>
               <p>
-                Qui ex dolore at repellat, quia neque doloribus omnis adipisci, ipsum eos odio fugit ut eveniet
-                blanditiis praesentium totam non nostrum dignissimos nihil eius facere et eaque. Qui, animi obcaecati.
+                Discover incredible savings on our newest arrivals. Shop now for the best deals on trending products!
               </p>
               <div class="btn-box">
-                <a href="#" class="btn1">
+                <a href="shop.html" class="btn1">
                   Buy Now
                 </a>
-                <a href="#" class="btn2">
-                  See More
-                </a>
+
               </div>
             </div>
           </div>
@@ -536,7 +533,7 @@
             </div>
             <div class="detail-box">
               <h5>
-                Free Shiping
+                Free Shipping
               </h5>
               <p>
                 variations of passages of Lorem Ipsum available
@@ -598,17 +595,16 @@
                 </h2>
               </div>
               <p>
-                Omnis ex nam laudantium odit illum harum, excepturi accusamus at corrupti, velit blanditiis unde
-                perspiciatis, vitae minus culpa? Beatae at aut consequuntur porro adipisci aliquam eaque iste ducimus
-                expedita accusantium?
+                Explore exclusive deals and discounts on gifts for your loved ones. Find the perfect present for any
+                occasion!
               </p>
               <div class="btn-box">
-                <a href="#" class="btn1">
+                <a href="shop.html" class="btn1">
                   Buy Now
                 </a>
-                <a href="#" class="btn2">
+                <!-- <a href="#" class="btn2">
                   See More
-                </a>
+                </a> -->
               </div>
             </div>
           </div>
@@ -623,50 +619,6 @@
 
   <!-- contact section -->
 
-  <section class="contact_section ">
-    <div class="container px-0">
-      <div class="heading_container ">
-        <h2 class="">
-          Contact Us
-        </h2>
-      </div>
-    </div>
-    <div class="container container-bg">
-      <div class="row">
-        <div class="col-lg-7 col-md-6 px-0">
-          <div class="map_container">
-            <div class="map-responsive">
-              <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France"
-                width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%"
-                allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-5 px-0">
-          <form action="#">
-            <div>
-              <input type="text" placeholder="Name" />
-            </div>
-            <div>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div>
-              <input type="text" placeholder="Phone" />
-            </div>
-            <div>
-              <input type="text" class="message-box" placeholder="Message" />
-            </div>
-            <div class="d-flex ">
-              <button>
-                SEND
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- end contact section -->
 
@@ -870,21 +822,18 @@
         getCookie('userId', function (userId) {
           console.log("Cookie: " + userId);
           if (userId && userId !== 'undefined') {
-            // User is logged in, hide Register and Login, show Logout
 
             $('#registerNavItem').hide();
             $('#loginNavItem').hide();
             $('#cartNavItem').show();
             $('#logoutNavItem').show();
           } else {
-            // User is not logged in, show Register and Login, hide Logout
             $('#registerNavItem').show();
             $('#loginNavItem').show();
             $('#cartNavItem').hide();
             $('#logoutNavItem').hide();
 
           }
-          // Call the callback function if provided
           if (callback) {
             callback(userId);
           }
@@ -899,16 +848,15 @@
           method: 'GET',
           success: function (response) {
             if (response == null || response === undefined) {
-              console.log(`Cookie ${name} not found`); // Debugging log
-              callback(null); // Call the callback function with null if cookie is not found
+              console.log(`Cookie ${name} not found`);
+              callback(null);
             } else {
-              // Use the response (cookie value) as needed
-              callback(response); // Call the callback function with the cookie value
+              callback(response); 
             }
           },
           error: function (xhr, status, error) {
-            console.error(`Error retrieving cookie ${name}:`, error); // Debugging log
-            callback(null); // Call the callback function with null in case of error
+            console.error(`Error retrieving cookie ${name}:`, error); 
+            callback(null); 
           }
         });
       }
@@ -920,23 +868,21 @@
           url: '/logout',
           method: 'GET',
           success: function (response) {
-            // Reload the page after successful logout
             location.reload();
           },
           error: function () {
             console.error('An error occurred during logout.');
-            // Optionally handle errors here
           }
         });
       }
 
-      // Bind logout function to logout button
+
       $('#logoutButton').on('click', function (e) {
         e.preventDefault();
         logout();
       });
 
-      // Check login status on page load
+      // Check login status
       checkLoginStatus();
 
       function formatPrice(price) {
@@ -956,6 +902,11 @@
                             <h6>
                                 Price <span>${formatPrice(item.price)}</span>
                             </h6>
+                            <div class="new">
+                          <span>
+                            New
+                          </span>
+                        </div>
                         </div>
                         ${item.new ? '<div class="new"><span>New</span></div>' : ''}
                     </a>
@@ -966,16 +917,21 @@
 
       // Function to fetch items using AJAX and inject them into the container
       function fetchAndInjectProducts() {
-        // AJAX request to fetch items
         $.ajax({
-          url: '/search?query=item', // Endpoint to fetch item data
+          url: '/search?query=item',
           method: 'GET',
           // query:'item',
           success: function (response) {
-            // Iterate over the items and inject them into the container
+            var count = 0;
             response.forEach(function (item) {
-              var newItemHTML = generateProductsHTML(item);
-              $('#productbox').append(newItemHTML);
+              if (count < 4) {
+
+
+                var newItemHTML = generateProductsHTML(item);
+                $('#productbox').append(newItemHTML);
+
+                count++;
+              }
             });
           },
           error: function (xhr, status, error) {
@@ -984,7 +940,7 @@
         });
       }
 
-      // Call the fetchAndInjectItems function to load items when the document is ready
+      //fetchAndInjectItems
       fetchAndInjectProducts();
 
       function generateItemHTML(item) {
@@ -1010,18 +966,18 @@
         `;
       }
 
-      // Function to fetch items using AJAX and inject them into the carousel
+      // Function to fetch items into the carousel
       function fetchAndInjectItems() {
-        // AJAX request to fetch items
+
         $.ajax({
-          url: '/carousel-data', // Endpoint to fetch carousel data
+          url: '/carousel-data', 
           method: 'GET',
           success: function (response) {
-            // Iterate over the items and inject them into the carousel
             response.forEach(function (item, index) {
-              // Skip the first item (static content)
+
               var newItemHTML = generateItemHTML(item);
               $('#first').append(newItemHTML);
+              console.log(index);
 
             });
           },
@@ -1034,18 +990,16 @@
       // Call the fetchAndInjectItems function to load items when the document is ready
       fetchAndInjectItems();
 
-      // Function to load content via AJAX
+
 
 
 
 
       $('#searchForm').on('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault();
 
-        // Get the value from the search input field
         var query = $('#searchInput').val();
 
-        // Now you can handle the form submission logic
         searchAndLoad(query);
       });
 
@@ -1065,7 +1019,7 @@
         }
       }
 
-      // Event handler for search button click
+
       $("#search-btn").click(function () {
         var query = $("#searchInput").val();
         if (query.trim() !== "") {
@@ -1073,7 +1027,7 @@
         }
       });
 
-      // Event handler for pressing Enter in the search input
+
       $("#searchInput").keypress(function (event) {
         if (event.which === 13) { // Enter key pressed
           var query = $("#searchInput").val();
@@ -1091,7 +1045,7 @@
         url: '/checkSession',
         success: function (response) {
           if (response > 0) {
-            // User is logged in, hide Register and Login, show Logout
+            // User is logged in
             // console.log('in')
             $('#registerNavItem').hide();
             $('#loginNavItem').hide();

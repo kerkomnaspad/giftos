@@ -249,18 +249,18 @@
         getCookie('userId', function (userId) {
           console.log("Cookie: " + userId);
           if (userId) {
-            // User is logged in, hide Register and Login, show Logout
+            // User is logged in
             $('#registerNavItem').hide();
             $('#loginNavItem').hide();
             $('#logoutNavItem').show();
             uid = userId;
           } else {
-            // User is not logged in, show Register and Login, hide Logout
+            // User is not logged in
             $('#registerNavItem').show();
             $('#loginNavItem').show();
             $('#logoutNavItem').hide();
           }
-          // Call the callback function if provided
+
           if (callback) {
             callback(userId);
           }
@@ -275,8 +275,7 @@
           url: '/checkSession',
           success: function (response) {
             if (response > 0) {
-              // User is logged in, hide Register and Login, show Logout
-              // console.log('in')
+
               $('#registerNavItem').hide();
               $('#loginNavItem').hide();
               $('#cartNavItem').show();
@@ -287,8 +286,7 @@
 
               console.log("reel uid" + uid);
             } else {
-              // console.log(response)
-              // User is not logged in, show Register and Login, hide Logout
+
               $('#registerNavItem').show();
               $('#loginNavItem').show();
               $('#cartNavItem').hide();
@@ -299,19 +297,19 @@
         });
 
       }
-      // Function to get cookie by name
+
       function getCookie(name, callback) {
         $.ajax({
           url: '/get-cookie',
           method: 'GET',
           success: function (response) {
-            console.log(`Cookie ${name} found:`, response); // Debugging log
-            // Use the response (cookie value) as needed
-            callback(response); // Call the callback function with the cookie value
+            console.log(`Cookie ${name} found:`, response);
+
+            callback(response);
           },
           error: function (xhr, status, error) {
-            console.error(`Error retrieving cookie ${name}:`, error); // Debugging log
-            callback(null); // Call the callback function with null in case of error
+            console.error(`Error retrieving cookie ${name}:`, error);
+            callback(null);
           }
         });
         checkSession();
@@ -324,8 +322,8 @@
           url: '/checkSession',
           success: function (response) {
             if (response > 0) {
-              // User is logged in, hide Register and Login, show Logout
-              // console.log('in')
+              // User is logged in
+
               $('#registerNavItem').hide();
               $('#loginNavItem').hide();
               $('#cartNavItem').show();
@@ -336,8 +334,8 @@
 
               console.log("reel uid" + uid);
             } else {
-              // console.log(response)
-              // User is not logged in, show Register and Login, hide Logout
+
+              // User is not logged in
               $('#registerNavItem').show();
               $('#loginNavItem').show();
               $('#cartNavItem').hide();
@@ -350,29 +348,27 @@
 
       }
 
-      // Logout function
+
       function logout() {
         $.ajax({
           url: '/logout',
           method: 'GET',
           success: function (response) {
-            // Reload the page after successful logout
             location.reload();
           },
           error: function () {
             console.error('An error occurred during logout.');
-            // Optionally handle errors here
           }
         });
       }
 
-      // Bind logout function to logout button
+
       $('#logoutButton').on('click', function (e) {
         e.preventDefault();
         logout();
       });
 
-      // Check login status on page load
+      // Check login status
       checkLoginStatus();
 
       $("#search-btn").click(function () {
@@ -383,10 +379,10 @@
         }
       });
 
-      // Event handler for pressing Enter in the search input
+
       $("#searchInput").keypress(function (event) {
         event.preventDefault();
-        if (event.which === 13) { // Enter key pressed
+        if (event.which === 13) {
           var query = $("#searchInput").val();
           if (query.trim() !== "") {
             searchAndLoad(query);
@@ -421,7 +417,7 @@
       price: 45.00
     };
 
-    // Function to format price
+    // format price idr
     function formatPrice(price) {
       const formatter = new Intl.NumberFormat('id-ID', {
         style: 'currency',
@@ -430,7 +426,7 @@
       return formatter.format(price);
     }
 
-    // Function to generate product details HTML
+    // generate product details
     function generateProductBox(product) {
       return `
     <div class="box d-flex border rounded mb-4" style="height: 100%;">
@@ -448,28 +444,27 @@
   `;
     }
 
-    // Injecting the product box into the container
 
 
     function fetchProduct(productId) {
       $.ajax({
-        url: `/product/${productId}`, // Endpoint on your server
+        url: `/product/${productId}`, 
         method: 'GET',
         dataType: 'json',
         success: function (product) {
-          // Product fetched successfully
+
           console.log(product);
-          // Now you can use the product data to display it on the frontend
+
           displayProduct(product);
         },
         error: function (jqXHR, textStatus, errorThrown) {
           console.error('Error:', errorThrown);
-          // Handle error if needed
+
         }
       });
     }
 
-    // Function to display product on the frontend
+    // Function display product frontend
     function displayProduct(product) {
 
       const container = document.getElementById('productDetail');
@@ -486,24 +481,24 @@
 
     fetchProduct(productId)
 
-    // Function to handle adding an item to the cart
+    // Function adding an item to the cart
     async function addToCart(productId) {
 
       if (uid == 0) {
         window.location.href = "login.html";
       }
       try {
-        // Assuming you have the necessary data available
-        const userId = uid; // Function to get the user ID
-        const itemNamePromise = getItemName(productId); // Function to get the item name
-        const typeIdPromise = getItemTypeId(productId); // Function to get the item type ID
-        const quantity = 1; // Set quantity to 1
 
-        // Wait for the promises to resolve
+        const userId = uid; 
+        const itemNamePromise = getItemName(productId); 
+        const typeIdPromise = getItemTypeId(productId);
+        const quantity = 1; 
+
+
         const itemName = await itemNamePromise;
         const typeId = await typeIdPromise;
 
-        // Data to send in the POST request
+
         const postData = {
           userid: userId,
           itemname: itemName,
@@ -512,7 +507,7 @@
           itemid: productId
         };
 
-        // Send a POST request to add the item to the cart
+
         $.ajax({
           url: '/addData?query=cart',
           method: 'POST',
@@ -520,25 +515,24 @@
           data: JSON.stringify(postData),
           success: function (response) {
             console.log('Item added to cart:', response);
-            // Show success message
+
             showSuccessMessage('Item added to cart successfully!');
           },
           error: function (jqXHR, textStatus, errorThrown) {
             console.log(JSON.stringify(postData))
             console.error('Error adding item to cart:', errorThrown);
-            // Handle error, if needed
+
           }
         });
       } catch (error) {
         console.error(error);
-        // Handle error, if needed
+
       }
     }
 
 
-    // Event listener for the "Add to Cart" button
     $(document).on('click', '.add-to-cart-btn', function () {
-      // const productId = $(this).data('product-id');
+
       addToCart(productId);
 
     });

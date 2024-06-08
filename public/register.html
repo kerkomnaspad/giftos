@@ -248,7 +248,7 @@
   <script src="js/custom.js"></script>
   <script>
 
-    // Function to handle form submission
+
 
 
     $(document).ready(function () {
@@ -266,7 +266,7 @@
       });
 
       $('#registerButton').on('click', function (event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); // Prevent the default
         addUser();
       });
 
@@ -281,7 +281,7 @@
         }
       }
 
-      // Event handler for search button click
+
       $("#search-btn").click(function () {
         var query = $("#searchInput").val();
         if (query.trim() !== "") {
@@ -289,7 +289,7 @@
         }
       });
 
-      // Event handler for pressing Enter in the search input
+
       $("#searchInput").keypress(function (event) {
         if (event.which === 13) { // Enter key pressed
           var query = $("#searchInput").val();
@@ -325,7 +325,6 @@
 
       // Check if passwords match
       if (formData.password !== formData.confirmPassword) {
-        // Show error label
         $('#formError').text('Passwords must match').show();
         return;
       }
@@ -334,16 +333,13 @@
       $('#formError').hide();
 
 
-      // Send form data to the server using AJAX
       $.ajax({
         type: 'POST',
         url: '/addUser',
         data: JSON.stringify(formData),
         contentType: 'application/json',
         success: function (response) {
-          // Handle success response from the server
           console.log('User added successfully:', response);
-          // alert('User added successfully');
           $('#formError').text('User added successfully').css('color', 'green').show();
           $('#userForm')[0].reset();
 

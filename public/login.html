@@ -33,8 +33,8 @@
 <style>
   #abstract {
     max-width: 100%;
-    /* Limit the width to 80% of the viewport */
-    /* max-height: 105%; Limit the height to 80% of the viewport */
+
+    /* max-height: 105%;*/
     /* width: auto; */
     height: 100%;
     object-fit: fill;
@@ -44,19 +44,18 @@
 
   #rememberMe {
     transform: scale(0.5);
-    /* Adjust the scale factor as needed */
+
     margin-right: 5px;
-    /* Adjust the spacing between the checkbox and the label */
+
   }
 
   .checkbox-wrapper {
     display: flex;
     vertical-align: middle;
     width: 50%;
-    /* Align the checkbox and label vertically */
+
   }
 
-  /* Optionally, add margin between checkbox and label */
   .checkbox-wrapper input[type="checkbox"] {
     margin-right: 5px;
   }
@@ -64,7 +63,7 @@
 
 <body>
   <div class="hero_area">
-    <!-- header section strats -->
+    <!-- header section starts -->
     <header class="header_section">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
         <a class="navbar-brand" href="index.html">
@@ -280,14 +279,14 @@
     $(document).ready(function () {
 
       $('#loginButton').on('click', function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-        login(); // Call your login function here
+        event.preventDefault(); 
+        login(); 
       });
 
       $('#loginForm').on('keypress', function (event) {
-        if (event.which === 13) { // Check if the key pressed is Enter (key code 13)
-          event.preventDefault(); // Prevent the default form submission behavior
-          login(); // Call your login function here
+        if (event.which === 13) { 
+          event.preventDefault(); 
+          login(); 
         }
       });
 
@@ -295,16 +294,12 @@
         getCookie('userId', function (userId) {
           console.log("Cookie: " + userId);
           if (userId && userId !== 'undefined') {
-            // User is logged in, hide Register and Login, show Logout
+            // User is logged in
 
-            // $('#registerNavItem').hide();
-            // $('#loginNavItem').hide();
-            // $('#cartNavItem').show();
-            // $('#logoutNavItem').show();
 
             window.location.href = "index.html"
           } else {
-            // User is not logged in, show Register and Login, hide Logout
+            // User is not logged in
             $('#registerNavItem').show();
             $('#loginNavItem').show();
             $('#cartNavItem').hide();
@@ -312,7 +307,7 @@
             $('#profileNavItem').hide();
 
           }
-          // Call the callback function if provided
+
           if (callback) {
             callback(userId);
           }
@@ -327,17 +322,12 @@
           url: '/checkSession',
           success: function (response) {
             if (response > 0) {
-              // User is logged in, hide Register and Login, show Logout
-              // console.log('in')
+
               uid = response;
               window.location.href = "index.html"
-              // $('#registerNavItem').hide();
-              // $('#loginNavItem').hide();
-              // $('#cartNavItem').show();
-              // $('#logoutNavItem').show();
+
             } else {
-              // console.log(response)
-              // User is not logged in, show Register and Login, hide Logout
+
               $('#registerNavItem').show();
               $('#loginNavItem').show();
               $('#cartNavItem').hide();
@@ -374,7 +364,7 @@
         }
       }
 
-      // Event handler for search button click
+
       $("#search-btn").click(function () {
         var query = $("#searchInput").val();
         if (query.trim() !== "") {
@@ -382,7 +372,7 @@
         }
       });
 
-      // Event handler for pressing Enter in the search input
+
       $("#searchInput").keypress(function (event) {
         if (event.which === 13) { // Enter key pressed
           var query = $("#searchInput").val();
@@ -417,10 +407,8 @@
               document.cookie = `userId=${encodeURIComponent(response.userId)}; expires=${expirationDate.toUTCString()}; path=/`;
             }
 
-            // $('#formError').text('Login successful! Redirecting...').show();
-            // setTimeout(function () {
+
             window.location.href = 'index.html';
-            // }, 1000);
           } else {
             $('#formError').text(response.message).show();
           }

@@ -148,7 +148,7 @@
         type: 'GET',
         data: { query: tb },
         success: function (data) {
-          // Call the function to populate form fields with the received data
+
           console.log("Table:" + tb)
           populateFormFields(data.columns);
 
@@ -161,7 +161,7 @@
 
     function populateFormFields(columns) {
       var formFieldsHtml = '';
-      // Loop through the columns array
+
       columns.forEach(column => {
         formFieldsHtml += `
         <div class="mb-3 row">
@@ -172,7 +172,7 @@
         </div>
       `;
       });
-      // Set the HTML content of the formFields element to the generated HTML
+
       $('#formFields').html(formFieldsHtml);
     }
 
@@ -180,27 +180,26 @@
 
     // // Call the function to populate form fields with the example data
 
-
     $('#btn-Users').click(function () {
-      // Call the loadDataIntoTable function
+
       loadDataIntoTable("user");
       getColumns("user");
     });
 
     $('#btn-ItemTypes').click(function () {
-      // Call the loadDataIntoTable function
+
       loadDataIntoTable("itemtype");
       getColumns("itemtype");
     });
 
     $('#btn-Items').click(function () {
-      // Call the loadDataIntoTable function
+
       loadDataIntoTable("item");
       getColumns("item");
     });
 
     $('#btn-Cart').click(function () {
-      // Call the loadDataIntoTable function
+
       loadDataIntoTable("cart");
       getColumns("cart");
     });
@@ -244,7 +243,7 @@
   var currentEditedRow;
 
   function editRow(rowDataId, qus) {
-    // Fetch existing data for editing
+    // get data untuk edit
     currentEditedRow = rowDataId;
 
     $.ajax({
@@ -272,7 +271,6 @@
 
 
   function updateData() {
-    // Get the row data ID and query from the update button's data attributes
     const rowDataId = currentEditedRow;
 
     const modalTitleElement = document.getElementById('exampleModalLabel');
@@ -280,7 +278,6 @@
     const words = modalTitleText.split(' ');
     const tbl = words[words.length - 1].toLowerCase();
 
-    // Collect the data from the modal fields
     const updatedData = {};
     const formElements = document.querySelectorAll('#formFields input');
     formElements.forEach(element => {
@@ -503,7 +500,6 @@
       return;
     }
 
-    // Send AJAX request to delete the row from the database
     $.ajax({
       url: '/delete', 
       type: 'POST', 

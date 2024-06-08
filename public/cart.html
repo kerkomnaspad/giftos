@@ -45,32 +45,28 @@
 <link href="css/responsive.css" rel="stylesheet" />
 
 <style>
-    /* Ensure the header has a lower z-index than the modal */
+    
     .hero_area {
         z-index: 1000;
-        /* Example z-index for header */
         position: relative;
-        /* Ensure the header is positioned */
     }
 
     .modal {
         z-index: 1050;
-        /* Bootstrap default for modals */
+       
     }
 
     .pending-text {
         color: orange;
-        /* Or any other orangish color */
+        
     }
 
     .processed-text {
         color: green;
-        /* Or any other green color */
     }
 
     .rejected-text {
         color: red;
-        /* Or any other green color */
     }
 </style>
 
@@ -246,13 +242,12 @@
                 url: '/get-cookie',
                 method: 'GET',
                 success: function (response) {
-                    console.log(`Cookie ${name} found:`, response); // Debugging log
-                    // Use the response (cookie value) as needed
-                    callback(response); // Call the callback function with the cookie value
+                    console.log(`Cookie ${name} found:`, response); 
+                    callback(response);
                 },
                 error: function (xhr, status, error) {
-                    console.error(`Error retrieving cookie ${name}:`, error); // Debugging log
-                    callback(null); // Call the callback function with null in case of error
+                    console.error(`Error retrieving cookie ${name}:`, error); 
+                    callback(null); 
                 }
             });
         }
@@ -264,7 +259,7 @@
                 url: '/checkSession',
                 success: function (response) {
                     if (response > 0) {
-                        // User is logged in, hide Register and Login, show Logout
+                        // User is logged in
 
                         $('#registerNavItem').hide();
                         $('#loginNavItem').hide();
@@ -274,7 +269,7 @@
                         uid = response;
                     } else {
 
-                        // User is not logged in, show Register and Login, hide Logout
+                        // User is not logged in
                         $('#registerNavItem').show();
                         $('#loginNavItem').show();
                         $('#cartNavItem').hide();
@@ -288,29 +283,28 @@
 
 
 
-        // Logout function
+
         function logout() {
         $.ajax({
           url: '/logout',
           method: 'GET',
           success: function (response) {
-            // Reload the page after successful logout
+            //successful logout
             location.reload();
           },
           error: function () {
             console.error('An error occurred during logout.');
-            // Optionally handle errors here
           }
         });
       }
 
-        // Bind logout function to logout button
+
         $('#logoutButton').on('click', function (e) {
             e.preventDefault();
             logout();
         });
 
-        // Check login status on page load
+
         checkLoginStatus();
         var tableName;
 
@@ -329,21 +323,20 @@
 
 
 
-        // Call the function to load data into the table
+        // load data into the table
         loadDataIntoTable("cart");
         getColumns("cart");
 
 
 
 
-
+        // getcolumn untuk add data form (button hidden)
         function getColumns(tb) {
             $.ajax({
                 url: '/showColumn',
                 type: 'GET',
                 data: { query: tb },
                 success: function (data) {
-                    // Call the function to populate form fields with the received data
                     console.log("Table:" + tb)
                     populateFormFields(data.columns);
 
@@ -356,9 +349,7 @@
 
         function populateFormFields(columns) {
             var formFieldsHtml = '';
-            // Loop through the columns array
             columns.forEach(column => {
-                // Check if the column is not equal to 'typeid'
                 if (column !== 'typeid') {
                     formFieldsHtml += `
       <div class="mb-3 row">
@@ -370,7 +361,6 @@
     `;
                 }
             });
-            // Set the HTML content of the formFields element to the generated HTML
             $('#formFields').html(formFieldsHtml);
         }
 
@@ -384,14 +374,14 @@
         $.ajax({
             url: '/cart',
             type: 'GET',
-            data: { query: qus }, // Set the query parameter
+            data: { query: qus },
             success: function (data) {
 
                 $('table thead').empty();
                 $('table tbody').empty();
                 $('table tfoot').empty();
 
-                // Check if data is not empty
+                // Check data is not empty
                 if (data.length > 0) {
 
                     var headers = Object.keys(data[0]).filter(header => !(header === 'id' || header === 'updatedAt' || header == 'createdAt'));
@@ -475,7 +465,7 @@
                             }
                             else if (header === 'price') {
                                 var price = rowData[header];
-                                var quantity = rowData['quantity']; // Assuming the header for quantity is 'quantity'
+                                var quantity = rowData['quantity'];
                                 var total = price * quantity;
                                 var formattedTotal = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(total);
                                 cell = $('<td>').text(formattedTotal).addClass('text-center');
@@ -483,26 +473,23 @@
                             else if (header === 'status') {
                                 var statusValue = rowData[header];
                                 var statusText = '';
-                                var statusClass = ''; // Variable to hold the CSS class for styling the status text
+                                var statusClass = '';
 
                                 if (statusValue === 0) {
                                     statusText = '-';
                                 } else if (statusValue === 1) {
                                     statusText = 'PENDING';
-                                    statusClass = 'pending-text'; // Add class for pending status
+                                    statusClass = 'pending-text'; 
                                 } else if (statusValue === 2) {
                                     statusText = 'PROCESSED';
-                                    statusClass = 'processed-text'; // Add class for processed status
+                                    statusClass = 'processed-text'; 
                                 } else if (statusValue === 3) {
                                     statusText = 'REJECTED';
-                                    statusClass = 'rejected-text'; // Add class for processed status
+                                    statusClass = 'rejected-text'; 
                                 }
 
-
-                                // Create a <span> element to hold the status text and apply the appropriate CSS class
                                 var statusSpan = $('<span>').text(statusText).addClass('status-text').addClass(statusClass);
 
-                                // Create the table cell and append the statusSpan to it
                                 cell = $('<td>').addClass('text-center').append(statusSpan);
                             }
                             else {
@@ -525,7 +512,6 @@
 
                 }
 
-                // var totalPrice = data.reduce((sum, rowData) => sum + (rowData['price'] * rowData['quantity']), 0);
                 var totalPrice = data.filter(rowData => rowData['status'] === 0)
                     .reduce((sum, rowData) => sum + (rowData['price'] * rowData['quantity']), 0);
                 var formattedTotalPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(totalPrice);
@@ -548,12 +534,12 @@
                                     type: 'POST',
                                     contentType: 'application/json',
                                     success: function (response) {
-                                        // Request was successful
+
                                         alert('Order placed successfully!');
                                         location.reload();
                                     },
                                     error: function (xhr, status, error) {
-                                        // Error occurred while making the request
+
                                         console.error(error);
                                         alert('An error occurred while updating status.');
                                     }
@@ -565,7 +551,6 @@
                     )
                 );
 
-                // Append footer row and order button row to the table
                 $('table tfoot').append(footerRow, orderButtonRow);
 
             },
@@ -583,20 +568,17 @@
         const confirmed = confirm('Are you sure you want to delete this row?');
 
         if (!confirmed) {
-            // If user cancels the deletion, return without doing anything
             return;
         }
 
-        // Send AJAX request to delete the row from the database
+
         $.ajax({
-            url: '/delete', // Replace with your API endpoint
-            type: 'POST', // or 'DELETE' depending on your API
-            data: { id: rowDataId, query: qus }, // Assuming 'id' is a unique identifier for the row
+            url: '/delete',
+            type: 'POST',
+            data: { id: rowDataId, query: qus },
             success: function (response) {
                 if (response.success) {
-                    // Remove the row from the table
                     row.remove();
-                    // Display success message after removing the row
                     alert('Row deleted successfully.');
                     reloadDaftarContent(qus);
                     loadDataIntoTable("cart")
@@ -611,7 +593,6 @@
     }
     function addData() {
 
-        // Ambil value dari title form
         const modalTitleElement = document.getElementById('exampleModalLabel');
         const modalTitleText = modalTitleElement.textContent.trim();
         const words = modalTitleText.split(' ');
@@ -645,7 +626,6 @@
     var currentEditedRow;
 
     function editRow(rowDataId, qus) {
-        // Fetch existing data for editing
         currentEditedRow = rowDataId;
 
         $.ajax({
@@ -669,13 +649,13 @@
             }
         });
     }
-    //Untuk reload abis add/delete
+
     function reloadDaftarContent(q) {
         parent.postMessage({ reloadDaftarContent: q }, '*');
     }
 
     function updateData() {
-        // Get the row data ID and query from the update button's data attributes
+
         const rowDataId = currentEditedRow;
 
         const modalTitleElement = document.getElementById('exampleModalLabel');
@@ -683,7 +663,7 @@
         const words = modalTitleText.split(' ');
         const tbl = words[words.length - 1].toLowerCase();
 
-        // Collect the data from the modal fields
+
         const updatedData = {};
         const formElements = document.querySelectorAll('#formFields input');
         formElements.forEach(element => {
@@ -699,11 +679,11 @@
 
 
 
-        // Send AJAX request to update the data in the database
+
         $.ajax({
 
-            url: '/update', // Replace with your API endpoint
-            type: 'POST', // or 'PUT' depending on your API
+            url: '/update', 
+            type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
                 ids: rowDataId,
@@ -712,7 +692,6 @@
             }),
             success: function (response) {
                 if (response.success) {
-                    // Reload the table or update the specific row in the table
 
                     alert('Data updated successfully.');
                 } else {
@@ -729,8 +708,8 @@
     function updateQuantity(rowDataId, newQuantity, tbl, quantityText) {
         $.ajax({
 
-            url: '/update', // Replace with your API endpoint
-            type: 'POST', // or 'PUT' depending on your API
+            url: '/update', 
+            type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
                 ids: rowDataId,
@@ -739,26 +718,20 @@
             }),
             success: function (response) {
                 if (response.success) {
-                    // Reload the table or update the specific row in the table
-                    // quantityText.text(newQuantity);
-                    // alert('Data updated successfully.');
+
                     loadDataIntoTable("cart")
                 } else {
                     alert('Failed to update data.');
                 }
-                // location.reload();
+
             },
             error: function () {
                 alert('Error occurred while trying to update data.');
             }
         });
         $('#searchForm').on('submit', function (event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-
-            // Get the value from the search input field
+            event.preventDefault(); 
             var query = $('#searchInput').val();
-
-            // Now you can handle the form submission logic
             searchAndLoad(query);
         });
 
@@ -776,8 +749,6 @@
                 window.location.href = 'shop.html?search=' + encodeURIComponent(query);
             }
         }
-
-        // Event handler for search button click
         $("#search-btn").click(function () {
             var query = $("#searchInput").val();
             if (query.trim() !== "") {
